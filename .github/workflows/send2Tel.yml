@@ -18,4 +18,4 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           document: ${{ github.workspace }}/live.txt
           message: |
-             disable link preview https://google.com.tw
+             freedom :)
