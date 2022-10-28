@@ -9,7 +9,7 @@ jobs:
   sender:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./
+      - uses: actions/checkout@v2
 
       - name: send default message
         uses: appleboy/telegram-action@master
@@ -17,3 +17,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           document: ${{ github.workspace }}/live.txt
+          message: |
+             disable link preview https://google.com.tw
