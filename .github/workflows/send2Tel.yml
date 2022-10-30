@@ -1,4 +1,4 @@
-name: Send File to Telegram
+name: Send live server to Telegram
 
 on:
   push:
@@ -11,11 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: send default message
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(TZ=Asia/Tehran date +'%s')"
+
+      - name: change file name
+        run: |
+          mv live.txt 'LIVE@${{ steps.date.outputs.date }}.txt'
+
+      - name: Send File to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          document: ${{ github.workspace }}/live.txt
-          message: |
-             freedom :)
+          message: " "
+          document: ${{ github.workspace }}/LIVE@${{ steps.date.outputs.date }}.txt
+
